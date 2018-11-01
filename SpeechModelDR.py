@@ -24,9 +24,6 @@ from keras.optimizers import SGD, Adadelta
 
 from readdata24 import DataSpeech
 
-import sys  
-reload(sys)  
-sys.setdefaultencoding('utf8')  
 class ModelSpeech(): # 语音模型类
 	def __init__(self, datapath):
 		'''
@@ -128,7 +125,7 @@ class ModelSpeech(): # 语音模型类
 		# captures output of softmax so we can decode the output during visualization
 		test_func = K.function([input_data], [y_pred])
 		
-		print('[*提示] 创建模型成功，模型编译成功')
+		print('Build Success')
 		return model, model_data
 		
 	def ctc_lambda_func(self, args):
