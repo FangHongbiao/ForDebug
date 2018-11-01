@@ -121,7 +121,7 @@ class DataSpeech():
 		if('Windows' == plat.system()):
 			filename = filename.replace('/','\\') # windows系统下需要执行这一行，对文件路径做特别处理
 		
-		wavsignal,fs=read_wav_data(self.datapath + filename)
+		wavsignal,fs=read_wav_data(filename)
 		
 
 
