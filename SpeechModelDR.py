@@ -87,7 +87,7 @@ class ModelSpeech(): # 语音模型类
 		#test=Model(inputs = input_data, outputs = layer_h6)
 		#test.summary()
 		
-		layer_h10 = layer_h9 #Reshape层
+		layer_h10 = Reshape((200, 3200))(layer_h9) #Reshape层
 		#layer_h5 = LSTM(256, activation='relu', use_bias=True, return_sequences=True)(layer_h4) # LSTM层
 		#layer_h6 = Dropout(0.2)(layer_h5) # 随机中断部分神经网络连接，防止过拟合
 		layer_h10 = Dropout(0.4)(layer_h10)
@@ -97,6 +97,7 @@ class ModelSpeech(): # 语音模型类
 		layer_h12 = Dense(self.MS_OUTPUT_SIZE, use_bias=True, kernel_initializer='he_normal')(layer_h11) # 全连接层
 		
 		y_pred = Activation('softmax', name='Activation0')(layer_h12)
+		print('---input--', input_data.get_shape())
 		print('---1--', layer_h1.get_shape())
 		print('---2--', layer_h2.get_shape())
 		print('---3--', layer_h3.get_shape())
