@@ -24,6 +24,9 @@ from keras.optimizers import SGD, Adadelta
 
 from readdata24 import DataSpeech
 
+import sys  
+reload(sys)  
+sys.setdefaultencoding('utf8')  
 class ModelSpeech(): # 语音模型类
 	def __init__(self, datapath):
 		'''
