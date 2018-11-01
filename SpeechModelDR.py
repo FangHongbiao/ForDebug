@@ -119,7 +119,7 @@ class ModelSpeech(): # 语音模型类
 		ada_d = Adadelta(lr = 0.01, rho = 0.95, epsilon = 1e-06)
 		
 		#model.compile(loss={'ctc': lambda y_true, y_pred: y_pred}, optimizer=sgd)
-		model.compile(loss={'ctc': lambda y_true, y_pred: y_pred}, optimizer = ada_d)
+		model.compile(loss={'cross_entropy': lambda y_true, y_pred: y_pred}, optimizer = ada_d)
 		
 		
 		# captures output of softmax so we can decode the output during visualization
