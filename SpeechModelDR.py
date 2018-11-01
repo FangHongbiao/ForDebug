@@ -94,8 +94,9 @@ class ModelSpeech(): # 语音模型类
 		layer_h11 = Dense(128, activation="relu", use_bias=True, kernel_initializer='he_normal')(layer_h10) # 全连接层
 		layer_h11 = Dropout(0.4)(layer_h11)
 		layer_h12 = Dense(self.MS_OUTPUT_SIZE, use_bias=True, kernel_initializer='he_normal')(layer_h11) # 全连接层
-		
+		print('-----', layer_h12.get_shape())
 		y_pred = Activation('softmax', name='Activation0')(layer_h12)
+		print('-----', y_pred.get_shape())
 		model_data = Model(inputs = input_data, outputs = y_pred)
 		#model_data.summary()
 		
