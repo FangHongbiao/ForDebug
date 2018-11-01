@@ -136,7 +136,7 @@ class DataSpeech():
 		#	data_input = np.row_stack((data_input,arr_zero))
 		
 		#data_input = data_input.T
-		data_label = list_symbol
+		data_label = np.array(list_symbol)
 		return data_input, data_label
 	
 	def data_genetator(self, batch_size=32, audio_length = 1600):
