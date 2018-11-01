@@ -137,7 +137,7 @@ class ModelSpeech(): # 语音模型类
 	
 	
 	
-	def TrainModel(self, datapath, epoch = 2, save_step = 1000, batch_size = 32, filename = 'model_speech/speech_model24'):
+	def TrainModel(self, datapath, epoch = 2, save_step = 1000, batch_size = 8, filename = 'model_speech/speech_model24'):
 		'''
 		训练模型
 		参数：
