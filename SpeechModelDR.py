@@ -22,7 +22,7 @@ from keras.layers import Conv1D,LSTM,MaxPooling1D, Lambda, TimeDistributed, Acti
 from keras import backend as K
 from keras.optimizers import SGD, Adadelta
 
-from readdata24 import DataSpeech
+from readdata_dr import DataSpeech
 
 class ModelSpeech(): # 语音模型类
 	def __init__(self, datapath):
