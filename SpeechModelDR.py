@@ -161,6 +161,7 @@ class ModelSpeech(): # 语音模型类
 					# data_genetator是一个生成器函数
 					
 					#self._model.fit_generator(yielddatas, save_step, nb_worker=2)
+					print(yielddatas)
 					self._model.fit_generator(yielddatas, save_step)
 					n_step += 1
 				except StopIteration:
