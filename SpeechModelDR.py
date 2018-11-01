@@ -30,7 +30,7 @@ class ModelSpeech(): # 语音模型类
 		初始化
 		默认输出的拼音的表示大小是1422，即1421个拼音+1个空白块
 		'''
-		MS_OUTPUT_SIZE = 1422
+		MS_OUTPUT_SIZE = 5
 		self.MS_OUTPUT_SIZE = MS_OUTPUT_SIZE # 神经网络最终输出的每一个字符向量维度的大小
 		#self.BATCH_SIZE = BATCH_SIZE # 一次训练的batch
 		self.label_max_string_length = 64
@@ -87,16 +87,29 @@ class ModelSpeech(): # 语音模型类
 		#test=Model(inputs = input_data, outputs = layer_h6)
 		#test.summary()
 		
-		layer_h10 = Reshape((200, 3200))(layer_h9) #Reshape层
+		layer_h10 = layer_h9 #Reshape层
 		#layer_h5 = LSTM(256, activation='relu', use_bias=True, return_sequences=True)(layer_h4) # LSTM层
 		#layer_h6 = Dropout(0.2)(layer_h5) # 随机中断部分神经网络连接，防止过拟合
 		layer_h10 = Dropout(0.4)(layer_h10)
+		
 		layer_h11 = Dense(128, activation="relu", use_bias=True, kernel_initializer='he_normal')(layer_h10) # 全连接层
 		layer_h11 = Dropout(0.4)(layer_h11)
 		layer_h12 = Dense(self.MS_OUTPUT_SIZE, use_bias=True, kernel_initializer='he_normal')(layer_h11) # 全连接层
-		print('-----', layer_h12.get_shape())
+		
 		y_pred = Activation('softmax', name='Activation0')(layer_h12)
-		print('-----', y_pred.get_shape())
+		print('---1--', layer_h1.get_shape())
+		print('---2--', layer_h2.get_shape())
+		print('---3--', layer_h3.get_shape())
+		print('---4--', layer_h4.get_shape())
+		print('---5--', layer_h5.get_shape())
+		print('----6-', layer_h6.get_shape())
+		print('---7--', layer_h7.get_shape())
+		print('---8--', layer_h8.get_shape())
+		print('---9--', layer_h9.get_shape())
+		print('----10-', layer_h10.get_shape())
+		print('---11--', layer_h11.get_shape())
+		print('---12--', layer_h12.get_shape())
+		print('---y_pred--', y_pred.get_shape())
 		model_data = Model(inputs = input_data, outputs = y_pred)
 		#model_data.summary()
 		
