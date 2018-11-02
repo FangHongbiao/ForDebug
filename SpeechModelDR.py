@@ -206,9 +206,9 @@ class ModelSpeech(): # 语音模型类
 					print('[error] generator error. please check data format.')
 					break
 				
-				self.SaveModel(comment='_e_'+str(epoch)+'_step_'+str(n_step * save_step))
-				self.TestModel(self.datapath, str_dataset='train', data_count = 4)
-				self.TestModel(self.datapath, str_dataset='dev', data_count = 4)
+				# self.SaveModel(comment='_e_'+str(epoch)+'_step_'+str(n_step * save_step))
+				# self.TestModel(self.datapath, str_dataset='train', data_count = 4)
+				# self.TestModel(self.datapath, str_dataset='dev', data_count = 4)
 				
 	def LoadModel(self,filename='model_speech/speech_model24.model'):
 		'''
@@ -253,7 +253,7 @@ class ModelSpeech(): # 语音模型类
 				pre = self.Predict(data_input, data_input.shape[0] // 8)
 
 				if(i % 10 == 0 and show_ratio == True):
-					print('测试进度：',i,'/',data_count)
+					print('Test processing：',i,'/',data_count)
 				
 				txt = ''
 				if(out_report == True):
