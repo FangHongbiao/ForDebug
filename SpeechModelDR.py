@@ -133,7 +133,7 @@ class ModelSpeech(): # 语音模型类
 		model_data = Model(inputs = input_data, outputs = y_pred)
 		#model_data.summary()
 		
-		labels = Input(name='the_labels', dtype='float32')
+		labels = Input(name='the_labels', shape=(1,), dtype='float32')
 		input_length = Input(name='input_length', shape=[1], dtype='int64')
 		print('---labels--', labels.get_shape())
 		# Keras doesn't currently support loss funcs with extra parameters
