@@ -153,6 +153,11 @@ class ModelSpeech(): # 语音模型类
 		#sgd = SGD(lr=0.0001, decay=1e-6, momentum=0.9, nesterov=True, clipnorm=5)
 		ada_d = Adadelta(lr = 0.01, rho = 0.95, epsilon = 1e-06)
 		
+		
+		# 把目标当成一个输入，构成多输入模型，把loss写成一个层，作为最后的输出，搭建模型的时候，
+		# 就只需要将模型的output定义为loss，而compile的时候，
+		# 直接将loss设置为y_pred（因为模型的输出就是loss，所以y_pred就是loss），
+		# 无视y_true，训练的时候，y_true随便扔一个符合形状的数组进去就行了。
 		#model.compile(loss={'ctc': lambda y_true, y_pred: y_pred}, optimizer=sgd)
 		model.compile(loss={'cross_entropy': lambda y_true, y_pred: y_pred}, optimizer = ada_d)
 		
@@ -186,7 +191,9 @@ class ModelSpeech(): # 语音模型类
 		num_data = data.GetDataNum() # 获取数据的数量
 		
 		yielddatas = data.data_genetator(batch_size, self.AUDIO_LENGTH)
-		
+		for i in range(1):
+			[X, y, input_length], labels = next(yielddatas)
+			print(X, y, input_length, labels)
 		for epoch in range(epoch): # 迭代轮数
 			print('[running] train epoch %d .' % epoch)
 			n_step = 0 # 迭代数据数
