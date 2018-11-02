@@ -172,8 +172,7 @@ class ModelSpeech(): # 语音模型类
 		
 		# y_pred = y_pred[:, :, :]
 		#y_pred = y_pred[:, 2:, :]
-		from keras.utils import to_categorical
-		return K.categorical_crossentropy(to_categorical(labels, num_classes=8), y_pred, from_logits=True)
+		return K.sparse_categorical_crossentropy(labels, y_pred, from_logits=True)
 	
 	
 	
