@@ -107,7 +107,7 @@ class ModelSpeech(): # 语音模型类
 		layer_h11_4 = Dense(8, activation="relu", use_bias=True, kernel_initializer='he_normal')(layer_h10) # 全连接层
 		layer_h11_4 = Dropout(0.4)(layer_h11)
 
-		layer_h10_1 = Reshape((1600))(layer_h11_4) #Reshape层
+		layer_h10_1 = Reshape((1600,))(layer_h11_4) #Reshape层
 		layer_h12 = Dense(self.MS_OUTPUT_SIZE, use_bias=True, kernel_initializer='he_normal')(layer_h10_1) # 全连接层
 		
 		y_pred = Activation('softmax', name='Activation0')(layer_h12)
