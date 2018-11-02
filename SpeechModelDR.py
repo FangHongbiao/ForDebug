@@ -94,7 +94,21 @@ class ModelSpeech(): # 语音模型类
 		
 		layer_h11 = Dense(128, activation="relu", use_bias=True, kernel_initializer='he_normal')(layer_h10) # 全连接层
 		layer_h11 = Dropout(0.4)(layer_h11)
-		layer_h12 = Dense(self.MS_OUTPUT_SIZE, use_bias=True, kernel_initializer='he_normal')(layer_h11) # 全连接层
+
+		layer_h11_1 = Dense(64, activation="relu", use_bias=True, kernel_initializer='he_normal')(layer_h10) # 全连接层
+		layer_h11_1 = Dropout(0.4)(layer_h11)
+
+		layer_h11_2 = Dense(32, activation="relu", use_bias=True, kernel_initializer='he_normal')(layer_h10) # 全连接层
+		layer_h11_2 = Dropout(0.4)(layer_h11)
+
+		layer_h11_3 = Dense(16, activation="relu", use_bias=True, kernel_initializer='he_normal')(layer_h10) # 全连接层
+		layer_h11_3 = Dropout(0.4)(layer_h11)
+
+		layer_h11_4 = Dense(8, activation="relu", use_bias=True, kernel_initializer='he_normal')(layer_h10) # 全连接层
+		layer_h11_4 = Dropout(0.4)(layer_h11)
+
+		layer_h10_1 = Reshape((1600))(layer_h11_4) #Reshape层
+		layer_h12 = Dense(self.MS_OUTPUT_SIZE, use_bias=True, kernel_initializer='he_normal')(layer_h10_1) # 全连接层
 		
 		y_pred = Activation('softmax', name='Activation0')(layer_h12)
 		print('---input--', input_data.get_shape())
@@ -109,6 +123,11 @@ class ModelSpeech(): # 语音模型类
 		print('---9--', layer_h9.get_shape())
 		print('----10-', layer_h10.get_shape())
 		print('---11--', layer_h11.get_shape())
+		print('---11_1--', layer_h11_1.get_shape())
+		print('---11_2--', layer_h11_2.get_shape())
+		print('---11_3--', layer_h11_3.get_shape())
+		print('---11_4--', layer_h11_4.get_shape())
+		print('---layer_h10_1--', layer_h10_1.get_shape())
 		print('---12--', layer_h12.get_shape())
 		print('---y_pred--', y_pred.get_shape())
 		model_data = Model(inputs = input_data, outputs = y_pred)
