@@ -136,11 +136,12 @@ class ModelSpeech(): # 语音模型类
 		labels = Input(name='the_labels', shape=[1], dtype='float32')
 		input_length = Input(name='input_length', shape=[1], dtype='int64')
 		label_length = Input(name='label_length', shape=[1], dtype='int64')
+		print('---labels--', labels.get_shape())
 		# Keras doesn't currently support loss funcs with extra parameters
 		# so CTC loss is implemented in a lambda layer
 		
 		#layer_out = Lambda(ctc_lambda_func,output_shape=(self.MS_OUTPUT_SIZE, ), name='ctc')([y_pred, labels, input_length, label_length])#(layer_h6) # CTC
-		loss_out = Lambda(self.ctc_lambda_func, output_shape=(1,), name='cross_entropy')([y_pred, layer_h12])
+		loss_out = Lambda(self.ctc_lambda_func, output_shape=(1,), name='cross_entropy')([y_pred, labels])
 		
 		
 		
