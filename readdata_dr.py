@@ -192,7 +192,7 @@ class DataSpeech():
 			#print('input_length:\n',input_length)
 			#X=X.reshape(batch_size, audio_length, 200, 1)
 			#print(X)
-			yield [X, input_length], y
+			yield ({'the_input': X, 'input_length': input_length}, {'the_labels': y})
 		pass
 		
 	def GetSymbolList(self):

@@ -190,9 +190,6 @@ class ModelSpeech(): # 语音模型类
 		num_data = data.GetDataNum() # 获取数据的数量
 		
 		yielddatas = data.data_genetator(batch_size, self.AUDIO_LENGTH)
-		for i in range(1):
-			[X, input_length], labels = next(yielddatas)
-			print(X, input_length, labels)
 		for epoch in range(epoch): # 迭代轮数
 			print('[running] train epoch %d .' % epoch)
 			n_step = 0 # 迭代数据数
